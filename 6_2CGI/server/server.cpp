@@ -45,12 +45,12 @@ int main(int argc, char * argv[])
     }
     else
     {
-        close(STDOUT_FILENO);
-        dup(connfd);
+        close(STDOUT_FILENO);//关闭标准输出
+        dup(connfd);//返回系统最小的可用文件描述符，相当于重定向服务器输出流
         string tmp;
         while(cin>>tmp)
         {
-            cout<<tmp<<endl;
+            cout<<tmp<<endl;//tmp内容将直接发送到客户端
         }
         close(connfd);
     }
