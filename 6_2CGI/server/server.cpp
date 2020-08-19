@@ -24,9 +24,10 @@ int main(int argc, char * argv[])
     sockaddr_in address;
     address.sin_family=AF_INET;
     address.sin_port=htons(port);
-    inet_pton(AF_INET,ip,&address.sin_addr);
+    // inet_pton(AF_INET,ip,&address.sin_addr);
+    address.sin_addr.s_addr = htonl(INADDR_ANY);
 
-    int sock = socket(AF_INET,SOCK_STREAM,0);
+    int sock = socket(PF_INET,SOCK_STREAM,0);
     assert(sock>=0);
 
     int ret = bind(sock,(sockaddr*)&address,sizeof(address));
