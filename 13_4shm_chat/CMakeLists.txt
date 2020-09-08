@@ -5,24 +5,25 @@ SET(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall")
 set(CMAKE_EXE_LINKER_FLAGS "-pthread")
 
 
+
 aux_source_directory(./server SERVER_SOUR)
 if(SERVER_SOUR)
     message(STATUS "find server source")
     project(server)
     add_executable(server ${SERVER_SOUR})
-    # target_link_libraries(server libevent.so)
-
+    TARGET_LINK_LIBRARIES(server rt)
+    # SET (CMAKE_VERBOSE_MAKEFILE 1)
 endif()
 
 
 
-aux_source_directory(./client CLIENT_SOUR)
-if(CLIENT_SOUR)
-    message(STATUS "find client source")
-    project(client)
-    add_executable(client ${CLIENT_SOUR})
-    # target_link_libraries(client libevent.so)
-endif()
+# aux_source_directory(./client CLIENT_SOUR)
+# if(CLIENT_SOUR)
+#     message(STATUS "find client source")
+#     project(client)
+#     add_executable(client ${CLIENT_SOUR})
+
+# endif()
 
 # FIND_PACKAGE(Threads REQUIRED)
 
